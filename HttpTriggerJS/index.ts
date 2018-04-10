@@ -1,4 +1,6 @@
-module.exports = function (context, req) {
+import { HttpContext, FunctionRequest, HttpStatusCodes } from 'azure-functions-types'
+
+module.exports = function (context: HttpContext, req: FunctionRequest) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
     let guess = req.query.guess
