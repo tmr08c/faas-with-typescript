@@ -1,18 +1,16 @@
 module.exports = function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
-
-    let guess = req.query.guess
-
+    var guess = req.query.guess;
     if (guess) {
-        let answer = drawRandomNumber()
-
+        var answer = drawRandomNumber();
         if (guess == answer) {
             context.res = {
                 body: "You win!"
             };
-        } else{
+        }
+        else {
             context.res = {
-                body: `Sorry, you guessed ${guess}, but the drawing was ${answer}. Please try again!`
+                body: "Sorry, you guessed " + guess + ", but the drawing was " + answer + ". Please try again!"
             };
         }
     }
@@ -24,7 +22,6 @@ module.exports = function (context, req) {
     }
     context.done();
 };
-
-function drawRandomNumber(){
-    return Math.round(Math.random() * 100)
+function drawRandomNumber() {
+    return Math.round(Math.random() * 100);
 }
