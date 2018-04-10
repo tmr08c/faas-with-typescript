@@ -4,13 +4,15 @@ module.exports = function (context, req) {
     let guess = req.query.guess
 
     if (guess) {
-        if (guess == 1) {
+        let answer = drawRandomNumber()
+
+        if (guess == answer) {
             context.res = {
                 body: "You win!"
             };
         } else{
             context.res = {
-                body: "Sorry, you didn't win. Please try again!"
+                body: `Sorry, you guessed ${guess}, but the drawing was ${answer}. Please try again!`
             };
         }
     }
@@ -22,3 +24,7 @@ module.exports = function (context, req) {
     }
     context.done();
 };
+
+function drawRandomNumber(){
+    return Math.round(Math.random() * 100)
+}
