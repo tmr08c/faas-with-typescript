@@ -3,12 +3,12 @@ import { HttpContext, FunctionRequest, HttpStatusCodes } from 'azure-functions-t
 module.exports = function (context: HttpContext, req: FunctionRequest) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
-    let guess = req.query.guess
+    let guess = Number.parseInt(req.query.guess)
 
     if (guess) {
         let answer = drawRandomNumber()
 
-        if (guess == answer) {
+        if (guess === answer) {
             context.res = {
                 body: "You win!"
             };
@@ -21,7 +21,7 @@ module.exports = function (context: HttpContext, req: FunctionRequest) {
     else {
         context.res = {
             status: 400,
-            body: "Please pass a guess on the query string."
+            body: "Please pass a guess on the query string. Guesses must be numbers."
         };
     }
     context.done();

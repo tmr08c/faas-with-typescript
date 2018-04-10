@@ -1,9 +1,9 @@
 module.exports = function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
-    var guess = req.query.guess;
+    var guess = Number.parseInt(req.query.guess);
     if (guess) {
         var answer = drawRandomNumber();
-        if (guess == answer) {
+        if (guess === answer) {
             context.res = {
                 body: "You win!"
             };
@@ -17,7 +17,7 @@ module.exports = function (context, req) {
     else {
         context.res = {
             status: 400,
-            body: "Please pass a guess on the query string."
+            body: "Please pass a guess on the query string. Guesses must be numbers."
         };
     }
     context.done();
