@@ -1,16 +1,23 @@
 module.exports = function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
-    if (req.query.name || (req.body && req.body.name)) {
-        context.res = {
-            // status: 200, /* Defaults to 200 */
-            body: "Hello " + (req.query.name || req.body.name)
-        };
+    let guess = req.query.guess
+
+    if (guess) {
+        if (guess == 1) {
+            context.res = {
+                body: "You win!"
+            };
+        } else{
+            context.res = {
+                body: "Sorry, you didn't win. Please try again!"
+            };
+        }
     }
     else {
         context.res = {
             status: 400,
-            body: "Please pass a name on the query string or in the request body"
+            body: "Please pass a guess on the query string."
         };
     }
     context.done();
